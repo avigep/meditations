@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Thoughts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Contents</th>
+      <th>Publish date</th>
+      <th>Read time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @thoughts.each do |thought| %>
+      <tr>
+        <td><%= thought.title %></td>
+        <td><%= thought.contents %></td>
+        <td><%= thought.publish_date %></td>
+        <td><%= thought.read_time %></td>
+        <td><%= link_to 'Show', thought %></td>
+        <td><%= link_to 'Edit', edit_thought_path(thought) %></td>
+        <td><%= link_to 'Destroy', thought, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Thought', new_thought_path %>
