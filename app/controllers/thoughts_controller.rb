@@ -1,4 +1,5 @@
 class ThoughtsController < ApplicationController
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_thought, only: [:show, :edit, :update, :destroy]
 
   # GET /thoughts
