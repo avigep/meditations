@@ -5,7 +5,7 @@ class ThoughtsController < ApplicationController
   # GET /thoughts
   # GET /thoughts.json
   def index
-    @thoughts = Thought.all
+    @thoughts = Thought.paginate(page: params[:page])
   end
 
   # GET /thoughts/1
