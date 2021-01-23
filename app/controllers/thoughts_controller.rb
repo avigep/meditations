@@ -5,7 +5,14 @@ class ThoughtsController < ApplicationController
   # GET /thoughts
   # GET /thoughts.json
   def index
-    @thoughts = Thought.paginate(page: params[:page])
+    if params[:query].present?
+      @thoughts = Thought.
+                    limit(10).
+                    where("title LIKE :query", query: "%#{params[:query].downcase}%").
+                    paginate(page: params[:page])
+    else
+      @thoughts = Thought.paginate(page: params[:page])
+    end
   end
 
   # GET /thoughts/1
