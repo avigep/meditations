@@ -16,11 +16,24 @@ RSpec.describe "/thoughts", type: :request do
   # Thought. As you add validations to Thought, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {  "title" => "test",
+      "contents" => "test content", 
+      "publish_date(1i)"=>"2021", 
+      "publish_date(2i)"=>"1", 
+      "publish_date(3i)"=>"20", 
+      "read_time" => "10"
+    }
   }
 
+  # Title is required but missing from the params below
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {  
+      "contents" => "invalid test", 
+      "publish_date(1i)"=>"2021", 
+      "publish_date(2i)"=>"1", 
+      "publish_date(3i)"=>"20", 
+      "read_time" => "10"
+    }
   }
 
   describe "GET /index" do
@@ -40,6 +53,7 @@ RSpec.describe "/thoughts", type: :request do
   end
 
   describe "GET /new" do
+    before { login_as_user }
     it "renders a successful response" do
       get new_thought_url
       expect(response).to be_successful
@@ -47,6 +61,7 @@ RSpec.describe "/thoughts", type: :request do
   end
 
   describe "GET /edit" do
+    before { login_as_user }
     it "render a successful response" do
       thought = Thought.create! valid_attributes
       get edit_thought_url(thought)
@@ -55,6 +70,7 @@ RSpec.describe "/thoughts", type: :request do
   end
 
   describe "POST /create" do
+    before { login_as_user }
     context "with valid parameters" do
       it "creates a new Thought" do
         expect {
@@ -69,6 +85,7 @@ RSpec.describe "/thoughts", type: :request do
     end
 
     context "with invalid parameters" do
+      before { login_as_user }
       it "does not create a new Thought" do
         expect {
           post thoughts_url, params: { thought: invalid_attributes }
@@ -83,16 +100,17 @@ RSpec.describe "/thoughts", type: :request do
   end
 
   describe "PATCH /update" do
+    before { login_as_user }
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { "title" => "new test title", "contents" => "test content" }
       }
 
       it "updates the requested thought" do
         thought = Thought.create! valid_attributes
         patch thought_url(thought), params: { thought: new_attributes }
         thought.reload
-        skip("Add assertions for updated state")
+        expect(thought.title).to eq new_attributes["title"]
       end
 
       it "redirects to the thought" do
@@ -104,15 +122,20 @@ RSpec.describe "/thoughts", type: :request do
     end
 
     context "with invalid parameters" do
+      let(:new_invalid_attributes) {
+        { "title" => "a", "contents" => "test content" }
+      }
+
       it "renders a successful response (i.e. to display the 'edit' template)" do
         thought = Thought.create! valid_attributes
-        patch thought_url(thought), params: { thought: invalid_attributes }
+        patch thought_url(thought), params: { thought: new_invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
   describe "DELETE /destroy" do
+    before { login_as_user }
     it "destroys the requested thought" do
       thought = Thought.create! valid_attributes
       expect {
