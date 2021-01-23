@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "thoughts/index", type: :view do
+  let(:user) { FactoryBot.create :user }
+
   before(:each) do
     assign(:thoughts, [
       Thought.create!(
@@ -14,6 +16,8 @@ RSpec.describe "thoughts/index", type: :view do
         read_time: 2
       )
     ])
+    allow(view).to receive(:current_user).and_return(user)
+    allow(view).to receive_messages(:will_paginate => nil)
   end
 
   it "renders a list of thoughts" do
