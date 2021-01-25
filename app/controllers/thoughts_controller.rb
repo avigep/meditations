@@ -8,7 +8,7 @@ class ThoughtsController < ApplicationController
     if params[:query].present?
       @thoughts = Thought.
                     limit(10).
-                    where("title LIKE :query", query: "%#{params[:query].downcase}%").
+                    where("title LIKE :query OR contents LIKE :query", query: "%#{params[:query].downcase}%").
                     paginate(page: params[:page])
     else
       @thoughts = Thought.paginate(page: params[:page])
