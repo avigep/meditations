@@ -1,5 +1,16 @@
 # [Meditations]('https://en.wikipedia.org/wiki/Meditations') is collection of `Thoughts`
 
+## Snapshots
+#### Login Page
+![Login](public/md3.png)
+
+#### Landing page (Thought list)
+![List](public/md4.png)
+#### Create thought
+![Create](public/md1.png)
+#### Search thought
+![Search](public/md2.png)
+
 ## Dependencies
 - Ruby 2.6.6
 - Rails 6.0.3
