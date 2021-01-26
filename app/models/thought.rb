@@ -7,6 +7,7 @@
 #  publish_date :date
 #  read_time    :integer
 #  title        :string(255)
+#  visible      :boolean
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

@@ -31,6 +31,11 @@
     <%= form.number_field :read_time %>
   </div>
 
+  <div class="field">
+    <%= form.label "Visible" %>
+    <%= form.check_box :visible, checked: true %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

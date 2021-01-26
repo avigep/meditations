@@ -24,6 +24,7 @@
         <td><%= thought.contents %></td>
         <td><%= thought.publish_date %></td>
         <td><%= thought.read_time %></td>
+        <td><%= thought.visible %></td>
         <td><%= link_to 'Show', thought %></td>
         <% if current_user.present? %>
           <td><%= link_to 'Edit', edit_thought_path(thought) %></td>
