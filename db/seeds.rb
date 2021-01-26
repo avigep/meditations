@@ -12,7 +12,7 @@ Marcus Aurelius wrote the 12 books of the Meditations in Koine Greek[1] as a sou
 It is unlikely that Marcus Aurelius ever intended the writings to be published. The work has no official title, so "Meditations" is one of several titles commonly assigned to the collection. These writings take the form of quotations varying in length from one sentence to long paragraphs.
 eos
 
-thought_title = "Thought Title # "
+thought_title = "Thought Title#"
 
 # Simple visible thoughts
 12.times.each do |iteration|
