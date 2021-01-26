@@ -6,12 +6,16 @@ class ThoughtsController < ApplicationController
   # GET /thoughts.json
   def index
     if params[:query].present?
-      @thoughts = Thought.
-                    limit(10).
-                    where("title LIKE :query OR contents LIKE :query", query: "%#{params[:query].downcase}%").
-                    paginate(page: params[:page])
+      @thoughts = Thought.search(
+                    keyword: params[:query],
+                    public_view: current_user.blank?
+                  ).paginate(page: params[:page])
     else
-      @thoughts = Thought.paginate(page: params[:page])
+      @thoughts = if current_user.blank?
+                    Thought.visible.paginate(page: params[:page])
+                  else
+                    Thought.paginate(page: params[:page])
+                  end
     end
   end
 
@@ -77,6 +81,6 @@ class ThoughtsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def thought_params
-      params.require(:thought).permit(:title, :contents, :publish_date, :read_time)
+      params.require(:thought).permit(:title, :contents, :publish_date, :read_time, :visible)
     end
 end

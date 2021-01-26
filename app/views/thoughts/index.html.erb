@@ -19,7 +19,7 @@
   <% @thoughts.each do |thought| %>
     <div class="ui card">
       <div class="content">
-        <div class="header"><%= thought.title %></div>
+        <div class="header"><h4><%= thought.title %><h4></div>
         <div class="meta">
           <% if thought.read_time.present? %>
             <span>Read Time <%= thought.read_time %> Min </span>

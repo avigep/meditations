@@ -35,7 +35,7 @@
     <div class="ui segment">
       <div class="field">
         <div class="ui toggle checkbox">
-          <input type="checkbox" name="visible" checked tabindex="0" class="hidden">
+          <%= form.check_box 'visible', {}, 'true', 'false' %>
           <label>Visible to public</label>
         </div>
       </div>

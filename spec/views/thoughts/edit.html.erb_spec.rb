@@ -4,7 +4,7 @@ RSpec.describe "thoughts/edit", type: :view do
   before(:each) do
     @thought = assign(:thought, Thought.create!(
       title: "MyString",
-      contents: "MyText",
+      contents: "MyTextMyTextMyTextMyTextMyTextMyTextMyText",
       read_time: 1
     ))
   end

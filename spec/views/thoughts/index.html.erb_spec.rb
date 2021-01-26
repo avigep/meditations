@@ -7,12 +7,12 @@ RSpec.describe "thoughts/index", type: :view do
     assign(:thoughts, [
       Thought.create!(
         title: "Title",
-        contents: "MyText",
+        contents: "MyTextMyTextMyTextMyTextMyTextMyText",
         read_time: 2
       ),
       Thought.create!(
         title: "Title",
-        contents: "MyText",
+        contents: "MyTextMyTextMyTextMyTextMyTextMyText",
         read_time: 2
       )
     ])
@@ -22,8 +22,7 @@ RSpec.describe "thoughts/index", type: :view do
 
   it "renders a list of thoughts" do
     render
-    assert_select "tr>td", text: "Title".to_s, count: 2
-    assert_select "tr>td", text: "MyText".to_s, count: 2
-    assert_select "tr>td", text: 2.to_s, count: 2
+    assert_select "h4", text: "Title".to_s, count: 2
+    assert_select "p", text: "MyTextMyTextMyTextMyTextMyTextMyText".to_s, count: 2
   end
 end
