@@ -10,13 +10,28 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <% if current_user.present? %>
-      Hello <%= current_user.email %> | <%= link_to "Sign out", destroy_user_session_path %>
-    <% else %>
-      <%= link_to "Sign In", new_user_session_path %>
-    <% end %>
-    <%= yield %>
+    <div class="ui clearing">
+        <%= form_tag(thoughts_path, :method => "get") do %>
+          <div class="ui action input">
+            <%= search_field_tag :query, params[:query], placeholder: "Search thoughts" %>
+            <button class="ui button">Search</button>
+          </div>
+        <span class="ui right floated header">
+          <% if current_user.present? %>
+            Hello <%= current_user.email %> | <%= link_to "Sign out", destroy_user_session_path %>
+          <% else %>
+            <%= link_to "Sign In", new_user_session_path %>
+          <% end %>
+        </span>
+      <% end %>
+    </div>
+    <hr>
+    <div class="ui container">
+      <%= yield %>
+    </div>
   </body>
+  <script>
+    $('.ui.checkbox').checkbox();
+  </script>
 </html>
